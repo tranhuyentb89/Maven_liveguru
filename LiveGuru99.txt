@@ -1,0 +1,30 @@
+2023-07-14 10:59:48,591 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
+2023-07-14 10:59:48,607 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
+2023-07-14 10:59:49,533 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
+2023-07-14 10:59:49,608 INFO  com.liveguru.backend.CommonClass - ===PASSED==
+2023-07-14 10:59:49,613 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
+2023-07-14 10:59:50,619 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
+2023-07-14 10:59:50,733 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
+2023-07-14 11:00:03,890 INFO  com.liveguru.backend.BACKEND_TESTCASE - Buoc 1: Verrify Email dang ky ton tai trong bang customer
+2023-07-14 11:00:03,984 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED===
+2023-07-14 11:00:03,984 INFO  com.liveguru.backend.BACKEND_TESTCASE - Buoc 2: Click on checkbox customer vua tao
+2023-07-14 11:00:07,050 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-14 11:00:08,879 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
+2023-07-14 11:00:08,880 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
+2023-07-14 11:00:09,578 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
+2023-07-14 11:00:09,614 INFO  com.liveguru.backend.CommonClass - ===PASSED==
+2023-07-14 11:00:09,614 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
+2023-07-14 11:00:10,607 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
+2023-07-14 11:00:10,699 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
+2023-07-14 11:00:22,081 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-14 11:00:22,112 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-14 11:00:22,140 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-14 11:00:23,884 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-14 11:00:24,151 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 10
+2023-07-14 11:00:24,152 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (e465542c332890b325412aa736e21e93)
+2023-07-14 11:00:26,574 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 10
+2023-07-14 11:00:26,574 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
+2023-07-14 11:00:26,577 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-BMKO81V', ip: '10.5.21.39', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.16.1'
+Driver info: driver.version: RemoteWebDriver

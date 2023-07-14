@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite parallel="false" name="BANK GURU">
+
+
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="commons.RetryListener" />
+	</listeners>
+
+	<test name="Run on chrome">
+		<parameter name="browser" value="chrome" />
+
+		<classes>
+			<class name="com.liveguru.backend.Common_FrontEnd_Step" />
+			<class name="com.liveguru.backend.BACKEND_TESTCASE" />
+		</classes>
+	</test>
+</suite>
