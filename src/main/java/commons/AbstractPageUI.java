@@ -37,8 +37,12 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_CHECKBOX_CUSTOMER_MANAGE ="//td[contains(text(),'%s')]//preceding-sibling::td//input[@type='checkbox']";
 	public static final String DYNAMIC_ACTION_DDROPDOWN_CUSTOMER_MANAGE_PARENT ="//select[@id='%s']";
 	public static final String DYNAMIC_ACTION_DDROPDOWN_CUSTOMER_MANAGE_CHILD ="//select[@id='%s']//option";
+
 	public static final String DYNAMIC_COLUMN_ON_TABLE ="//td[contains(text(),'%s')]";
 	
 	public static final String DYNAMIC_CHECKBOX_IN_REVIEW_TABLE ="//td[contains(text(),'%s')]//following-sibling::td[contains(text(),'%s')]//preceding-sibling::td//input[@name='reviews']";
 	public static final String DYNAMIC_STATUS_IN_REVIEW_TABLE ="//td[contains(text(),'%s')]//following-sibling::td[contains(text(),'%s')]//preceding-sibling::td[contains(text(),'Approved')]";
+	
+	public static final String INVOICE_NUMBER_COLUMN = "//table[@id='sales_invoice_grid_table']//td[%s]";
+
 }

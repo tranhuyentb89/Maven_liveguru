@@ -45,6 +45,10 @@ public class BE_ManageCustomerPageObject extends AbstractPages{
 		return isControlDisplayed(driver, AbstractPageUI.DYNAMIC_STATUS_IN_REVIEW_TABLE, summaryReview,detailReview );
 	}
 
+	public void clickToFirstCheckboxInOrderTable(){
+
+	}
+
 
 
 }
