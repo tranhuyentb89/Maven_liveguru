@@ -140,7 +140,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
         Thread.sleep(10000);
-        System.out.println("abc de");
+        System.out.println("tesst huyen");
     }
 
     public void TC_06_VerifySortIsWorkingCorrectly() throws InterruptedException {
