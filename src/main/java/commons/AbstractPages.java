@@ -56,6 +56,7 @@ public class AbstractPages {
     public String getTextOfElement(WebDriver driver, String locatorXpath, String... values) {
         locatorXpath = String.format(locatorXpath, (Object[]) values);
         element = driver.findElement(By.xpath(locatorXpath));
+        System.out.println("aaasdfsdfdsfds");
         return element.getText();
     }
 
