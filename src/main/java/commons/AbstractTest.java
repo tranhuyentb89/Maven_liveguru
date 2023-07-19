@@ -1,6 +1,8 @@
 package commons;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.logging.Log;
@@ -29,7 +31,11 @@ public class AbstractTest {
 		} else if (browserName.equalsIgnoreCase("chrome")) {
 //			System.setProperty("webdriver.chrome.driver", ".\\resources\\chromedriver.exe");
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			Map<String, Object> prefs = new HashMap<String, Object>();
+			prefs.put("download.default_directory", System.getProperty("user.dir") + "\\downloadFile");
+			ChromeOptions options = new ChromeOptions();
+			options.setExperimentalOption("prefs", prefs);
+			driver = new ChromeDriver(options);
 
 		} else if (browserName.equalsIgnoreCase("chromeheadless")) {
 			System.setProperty("webdriver.chrome.driver", ".\\resources\\chromedriver.exe");

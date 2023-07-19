@@ -123,7 +123,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 //		BE_ManageCustomerPage.clickToCloseIncomMessage();
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Sales");
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Orders");
-        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
+            BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
         BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Canceled", "sales_order_grid_filter_status");
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
         Thread.sleep(1000);
@@ -140,7 +140,6 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
         Thread.sleep(10000);
-
 
     }
 
