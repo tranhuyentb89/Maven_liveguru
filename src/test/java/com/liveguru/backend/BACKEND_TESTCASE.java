@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -16,13 +18,17 @@ import org.testng.annotations.Test;
 import pageObject.BE_LoginPageObject;
 import pageObject.BE_ManageCustomerPageObject;
 
+import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class BACKEND_TESTCASE extends AbstractTest {
 
     WebDriver driver;
     String adminUser, adminPass;
+
     BE_LoginPageObject BE_loginPage;
     BE_ManageCustomerPageObject BE_ManageCustomerPage;
     CommonClass newCustomer;
@@ -107,7 +113,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
     }
 
     @Test
-    public void TC_03_InvoiceCanBePrint() {
+    public void TC_03_InvoiceCanBePrint() throws InterruptedException {
         //driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
 //		BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
@@ -120,6 +126,21 @@ public class BACKEND_TESTCASE extends AbstractTest {
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
         BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Canceled", "sales_order_grid_filter_status");
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
+        Thread.sleep(1000);
+        BE_ManageCustomerPage.selectFirstItemInTable();
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Print Invoices", "sales_order_grid_massaction-select");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
+        verifyEquals(BE_ManageCustomerPage.getTextOfErrorMesg(), "There are no printable documents related to selected orders.");
+
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Complete", "sales_order_grid_filter_status");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
+        Thread.sleep(1000);
+        BE_ManageCustomerPage.selectFirstItemInTable();
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Print Invoices", "sales_order_grid_massaction-select");
+
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
+        Thread.sleep(10000);
+
 
     }
 

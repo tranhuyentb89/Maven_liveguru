@@ -2,6 +2,8 @@ package commons;
 
 import static org.testng.Assert.fail;
 
+import java.io.File;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -684,5 +686,61 @@ public class AbstractPages {
     public void waitElementCanClicked(WebDriver driver, String colName) {
         waitForElementClickAble(driver, AbstractPageUI.DYNAMIC_LINK_BUTTON, colName);
     }
+
+    public boolean isFileDownloaded(String expectedFileName, String fileExtension, int timeout){
+        String folderName = System.getProperty("user.dir") + File.separator +"downloads";
+        //Array to store list of file in directory
+        File[] listOfFile;
+
+        //Store filename
+        String fileName;
+
+        //Consider file is downloaded or not
+        boolean fileDownloaded = false;
+
+        // capture time before looking for files in directory
+        // last modified time of previous files will always less than start time
+        // this is basically to ignore previous downloaded files
+
+        long startTime = Instant.now().toEpochMilli();
+
+        //time to wait for download to finish
+        long waitTime = startTime + timeout;
+
+        //while current time is lesser than wait time
+        while (Instant.now().toEpochMilli() < waitTime)
+        {
+            listOfFile = new File(folderName).listFiles();
+
+            for (File file:listOfFile){
+                fileName = file.getName().toLowerCase();
+
+                if (file.lastModified() > startTime && !fileName.contains("crdownload") && fileName.contains(expectedFileName.toLowerCase()) && fileName.contains(fileExtension.toLowerCase()))
+                {
+                    fileDownloaded = true;
+                    break;
+                }
+            }
+            if (fileDownloaded)
+                break;
+        }
+        return fileDownloaded;
+    }
+
+
+    public boolean isFileDownloaded(String downloadPath, String fileName) {
+        File dir = new File(downloadPath);
+        File[] dirContents = dir.listFiles();
+
+        for (int i = 0; i < dirContents.length; i++) {
+            if (dirContents[i].getName().equals(fileName)) {
+                // File has been found, it can now be deleted:
+                dirContents[i].delete();
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 }
