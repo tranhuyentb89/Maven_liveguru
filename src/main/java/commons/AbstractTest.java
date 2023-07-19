@@ -1,5 +1,6 @@
 package commons;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import org.testng.Assert;
 import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.testng.annotations.BeforeSuite;
 
 public class AbstractTest {
 	private WebDriver driver;
@@ -198,6 +200,24 @@ public class AbstractTest {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+		}
+	}
+
+	@BeforeSuite
+	public void deleteAllFileDownload(){
+		try{
+			String pathFolderDownload = System.getProperty("user.dir") + "\\downloadFile";
+			File file = new File(pathFolderDownload);
+			File[] listOfFile = file.listFiles();
+			for (int i =0; i < listOfFile.length ; i++){
+				if (listOfFile[i].isFile()){
+					System.out.println("Day la xoa file " + listOfFile[i].getName());
+					new File(listOfFile[i].toString()).delete();
+				}
+			}
+		}
+		catch (Exception e){
+			System.out.println("No file is deleted");
 		}
 	}
 }

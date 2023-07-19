@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -19,6 +20,10 @@ import pageObject.BE_LoginPageObject;
 import pageObject.BE_ManageCustomerPageObject;
 
 import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -113,7 +118,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
     }
 
     @Test
-    public void TC_03_InvoiceCanBePrint() throws InterruptedException {
+    public void TC_03_InvoiceCanBePrint() throws InterruptedException, MalformedURLException {
         //driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
 //		BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
@@ -140,9 +145,32 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
         Thread.sleep(10000);
-        System.out.println("huyen tran abc");
+
+    }
+    String fileDirectory = System.getProperty("user.dir") + "\\downloadFile";
+
+    public void getFileName()  {
+        JavascriptExecutor js1 = (JavascriptExecutor)driver;
+    }
+    public void fileDownloadedOrNot(){
+        File folder = new File(fileDirectory);
+        File[] allFiles = new File(folder.getPath()).listFiles();
+        for (File file: allFiles){
+            String eachFile = file.getName();
+            System.out.println(eachFile + "is downloaded");
+            if (eachFile.contains(getFileNameInLocation(fileDirectory))){
+                System.out.println("OK OK nhe");
+            }
+            else continue;
+        }
     }
 
+    public String getFileNameInLocation(String locator){
+        Path path = Paths.get(locator);
+        Path fileName = path.getFileName();
+        System.out.println("File download is " + fileName);
+        return fileName.toString();
+    }
     public void TC_06_VerifySortIsWorkingCorrectly() throws InterruptedException {
 //		driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
