@@ -191,15 +191,15 @@ public class BACKEND_TESTCASE extends AbstractTest {
         verifyEquals(reviewSummary, CommonClass.summaryReview);
     }
 
-
+//    @Test
     public void TC_06_VerifySortIsWorkingCorrectly() throws InterruptedException {
-//		driver.get(Contants.BACKEND_URL);
+		driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
 //		BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
 //		BE_loginPage.inputToDynamicTextbox(driver, "guru99com", "login");
 //		BE_loginPage.clickToLoginButton();
-//		BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
-//		BE_ManageCustomerPage.clickToCloseIncomMessage();
+		BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
+		BE_ManageCustomerPage.clickToCloseIncomMessage();
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Sales");
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Invoices");
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Invoices");
@@ -226,21 +226,34 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
     }
 
-    public void checkSearchTableByColumn(int column, String value) {
-        List<WebElement> row = driver.findElements(
-                By.xpath("//table[@id='reviwGrid_table']//tbody//tr"));
-        int rowTotal = row.size();
-        System.out.println("Số dòng tìm thấy: " + rowTotal);
-        for (int i = 1; i <= rowTotal; i++) {
-            WebElement elementCheck = driver.findElement(
-                    By.xpath("//table[@id='reviwGrid_table']//tbody//tr[" + i + "]//td[" + column + "]"));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
-            System.out.print(value + " - ");
-            System.out.println(elementCheck.getText());
-            Assert.assertTrue(elementCheck.getText().toUpperCase().contains(value.toUpperCase()),
-                    "Dòng số " + i + " không chứa giá trị tìm kiếm.");
-        }
+    @Test
+    public void TC_07_SearchFunctionWorking() throws InterruptedException {
+        driver.get(Contants.BACKEND_URL);
+        BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
+        String valueSearch = CommonClass.firstName + " " + CommonClass.lastName + " " + CommonClass.middleName;
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, valueSearch, "customerGrid_filter_name");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,3 ,valueSearch,"customerGrid_table");
+        BE_ManageCustomerPage.clearTextInTexbox_Backend(driver, "customerGrid_filter_name");
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, CommonClass.email, "customerGrid_filter_email");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,4, CommonClass.email, "customerGrid_table");
+
+        BE_ManageCustomerPage.clearTextInTexbox_Backend(driver, "customerGrid_filter_email");
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, CommonClass.randomNumber() +"", "customerGrid_filter_Telephone");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,6, CommonClass.randomNumber() +"", "customerGrid_table");
+
+
+        BE_ManageCustomerPage.clearTextInTexbox_Backend(driver, "customerGrid_filter_Telephone");
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, CommonClass.ZipToSearch, "customerGrid_filter_billing_postcode");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,6, CommonClass.ZipToSearch, "customerGrid_table");
+
     }
 
     //	public void checkSearchTableByColumn(int column, String value) {

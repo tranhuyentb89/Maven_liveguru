@@ -46,6 +46,7 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_STATUS_IN_REVIEW_TABLE ="//td[contains(text(),'%s')]//following-sibling::td[contains(text(),'%s')]//preceding-sibling::td[contains(text(),'Approved')]";
 	
 	public static final String INVOICE_NUMBER_COLUMN = "//table[@id='sales_invoice_grid_table']//td[%s]";
+	public  static final String DYNAMIC_TABLE_BACKEND ="//table[@id='%s']//tbody//tr";
 
 
 }

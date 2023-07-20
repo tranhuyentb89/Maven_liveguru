@@ -483,6 +483,12 @@ public class AbstractPages {
         clickToElement(driver, AbstractPageUI.DYNAMIC_LINK_BUTTON, dynamicLinkButton);
     }
 
+    public void clickToDynamicLinkButtonJS(WebDriver driver, String dynamicLinkButton) {
+        highlightElement(driver, AbstractPageUI.DYNAMIC_LINK_BUTTON, dynamicLinkButton);
+        clickToElementByJS(driver, AbstractPageUI.DYNAMIC_LINK_BUTTON, dynamicLinkButton);
+    }
+
+
     public String getErrorMsgOnProductInCard(WebDriver driver, String dynamicProduct) {
         highlightElement(driver, AbstractPageUI.DYNAMIC_ERROR_MSG_ON_PRODUCT_IN_CARD, dynamicProduct);
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_ERROR_MSG_ON_PRODUCT_IN_CARD,
@@ -705,9 +711,32 @@ public class AbstractPages {
             } else continue;
         }
     }
+    public void checkSearchTableByColumnDynamic(WebDriver driver, String locatorXpath, int column, String valueSearch, String...tableID) {
+        locatorXpath = String.format(locatorXpath, (Object[]) tableID);
+        List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
+        int rowTotal = row.size();
+        System.out.println("Số dòng tìm thấy: " + rowTotal);
+        for (int i = 1; i <= rowTotal; i++) {
+            WebElement elementCheck = driver.findElement(
+                    By.xpath(locatorXpath + "//td[" + column + "]"));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
+            System.out.print(valueSearch + " - ");
+            System.out.println(elementCheck.getText());
+            Assert.assertTrue(elementCheck.getText().toUpperCase().contains(valueSearch.toUpperCase()),
+                    "Dòng số " + i + " không chứa giá trị tìm kiếm.");
+        }
+    }
 
+    public void  checkSearchTableByColumn(WebDriver driver, int columnNumber, String valueToSearch, String tableIDName){
+        checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, columnNumber, valueToSearch, tableIDName );
+    }
 
     public String getReviewSummary(WebDriver driver, String reviewID) {
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_REVIEW_SUMMARY, reviewID);
+    }
+
+    public  void  clearTextInTexbox_Backend(WebDriver driver, String textboxName){
+        clearTextInElement(driver, AbstractPageUI.DYNAMIC_TEXTBOX_CHECKBOX, textboxName );
     }
 }

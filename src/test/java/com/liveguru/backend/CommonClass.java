@@ -18,7 +18,9 @@ public class CommonClass extends AbstractTest {
 	FE_Landing_Cart_ProductPageObject FE_Landing_Cart_Product;
 	FE_RegisterPageObject FE_RegisterPage;
 	FE_HomePageObject FE_HomePage;
-	public static String firstName, lastName, confirmPass, middleName, email, password;
+	public static String firstName, lastName, confirmPass, middleName, email, password, phone;
+	public static String ZipToSearch ="550000";
+
 	public static String detailReview, summaryReview, nicknameReview;
 
 	public CommonClass(WebDriver driver) {
@@ -77,7 +79,7 @@ public class CommonClass extends AbstractTest {
 		FE_Landing_Cart_Product.clickToDynamicLinkButton(driver, "Submit Review");
 	}
 	
-	public int randomNumber() {
+	public static int randomNumber() {
 		Random random = new Random();
 		return random.nextInt(999999);
 	}
