@@ -1,19 +1,19 @@
-2023-07-20 15:20:56,288 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
-2023-07-20 15:20:56,313 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
-2023-07-20 15:20:57,336 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
-2023-07-20 15:20:57,415 INFO  com.liveguru.backend.CommonClass - ===PASSED==
-2023-07-20 15:20:57,419 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
-2023-07-20 15:20:58,489 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
-2023-07-20 15:20:58,609 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
-2023-07-20 15:21:28,518 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED===
-2023-07-20 15:21:43,108 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
-2023-07-20 15:21:43,151 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
-2023-07-20 15:21:43,188 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
-2023-07-20 15:21:44,640 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 10
-2023-07-20 15:21:44,640 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (4c8fcffa63e067a4c5d9b41acf1aa5fb)
-2023-07-20 15:21:46,528 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 10
-2023-07-20 15:21:46,528 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
-2023-07-20 15:21:46,539 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
+2023-07-20 17:26:31,119 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
+2023-07-20 17:26:31,141 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
+2023-07-20 17:26:31,993 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
+2023-07-20 17:26:32,194 INFO  com.liveguru.backend.CommonClass - ===PASSED==
+2023-07-20 17:26:32,198 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
+2023-07-20 17:26:33,253 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
+2023-07-20 17:26:33,336 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
+2023-07-20 17:26:51,755 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 17:26:51,784 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 17:26:51,812 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 17:26:55,462 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED===
+2023-07-20 17:26:55,793 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 10
+2023-07-20 17:26:55,794 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (6bb8415924e2a8b3e71f5b257074b5d7)
+2023-07-20 17:26:56,491 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 10
+2023-07-20 17:26:56,491 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
+2023-07-20 17:26:56,495 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
 Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
 System info: host: 'DESKTOP-BMKO81V', ip: '10.5.21.39', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.16.1'
 Driver info: driver.version: RemoteWebDriver

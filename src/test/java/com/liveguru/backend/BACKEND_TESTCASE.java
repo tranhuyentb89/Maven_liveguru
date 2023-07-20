@@ -160,14 +160,15 @@ public class BACKEND_TESTCASE extends AbstractTest {
         FE_ReviewPage.clickToDynamicLinkButton(driver, "Submit Review");
 
         driver.get(Contants.BACKEND_URL);
-        BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
-        BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
-        BE_loginPage.inputToDynamicTextbox(driver, "guru99com", "login");
-        BE_loginPage.clickToLoginButton();
         BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
-        if (BE_ManageCustomerPage.isIncomeMessageDisplayed()) {
-            BE_ManageCustomerPage.clickToCloseIncomMessage();
-        }
+//        BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
+//        BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
+//        BE_loginPage.inputToDynamicTextbox(driver, "guru99com", "login");
+//        BE_loginPage.clickToLoginButton();
+//        BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
+//        if (BE_ManageCustomerPage.isIncomeMessageDisplayed()) {
+//            BE_ManageCustomerPage.clickToCloseIncomMessage();
+//        }
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Catalog");
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Reviews and Ratings");
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Customer Reviews");
@@ -179,7 +180,15 @@ public class BACKEND_TESTCASE extends AbstractTest {
         String ReviewID = BE_ManageCustomerPage.getReviewIDSelected("value", CommonClass.summaryReview, CommonClass.detailReview);
         System.out.println("Review ID is : " + ReviewID);
         BE_ManageCustomerPage.clickToDynamicEditButtonInReviewTable(driver, CommonClass.detailReview);
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Approved", "status_id");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Save Review");
 
+        driver.get(Contants.REVIEW_PRODUCT_URL);
+        FE_ReviewPage = PageFactoryManage.getReviewPage(driver);
+        String reviewSummary = FE_ReviewPage.getReviewSummary(driver, ReviewID);
+        System.out.println("summary 1 : " + reviewSummary );
+        System.out.println("Summary 2 : " + CommonClass.summaryReview);
+        verifyEquals(reviewSummary, CommonClass.summaryReview);
     }
 
 

@@ -31,6 +31,7 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_CHECKOUT_LOADING_IMG="//div[@id='%s']//span[@class='please-wait']";
 	
 	public static final String DYNAMIC_PRODUCT_NAME_IN_ADVANCE_SEARCH ="//h2[@class='product-name']//a[@title='%s']";
+	public static final String DYNAMIC_REVIEW_SUMMARY ="//a[contains(@href,'%s')]";
 	
 	
 	//BACKEND
@@ -45,5 +46,6 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_STATUS_IN_REVIEW_TABLE ="//td[contains(text(),'%s')]//following-sibling::td[contains(text(),'%s')]//preceding-sibling::td[contains(text(),'Approved')]";
 	
 	public static final String INVOICE_NUMBER_COLUMN = "//table[@id='sales_invoice_grid_table']//td[%s]";
+
 
 }

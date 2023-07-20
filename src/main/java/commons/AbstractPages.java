@@ -707,4 +707,7 @@ public class AbstractPages {
     }
 
 
+    public String getReviewSummary(WebDriver driver, String reviewID) {
+        return getTextOfElement(driver, AbstractPageUI.DYNAMIC_REVIEW_SUMMARY, reviewID);
+    }
 }
