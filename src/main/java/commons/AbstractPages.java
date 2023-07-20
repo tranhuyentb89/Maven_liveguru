@@ -656,6 +656,10 @@ public class AbstractPages {
         clickToElement(driver, AbstractPageUI.DYNAMIC_CHECKBOX_IN_REVIEW_TABLE, value01, value02);
     }
 
+    public void clickToDynamicEditButtonInReviewTable(WebDriver driver, String detailReview){
+        clickToElement(driver, AbstractPageUI.DYNAMIC_EDIT_BUTTON_IN_REVIEW_TABLE, detailReview);
+    }
+
     public boolean sortOrNot(ArrayList<String> valueInTable) {
         System.out.println("Number of row " + valueInTable.size());
         for (int i = 0; i < valueInTable.size() - 1; i++) {

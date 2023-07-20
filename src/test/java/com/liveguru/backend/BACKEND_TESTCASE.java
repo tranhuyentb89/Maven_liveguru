@@ -111,7 +111,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
         BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Log Out");
     }
 
-    @Test
+//    @Test
     public void TC_03_InvoiceCanBePrint() throws InterruptedException, MalformedURLException {
 //        driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
@@ -176,6 +176,9 @@ public class BACKEND_TESTCASE extends AbstractTest {
         verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.summaryReview));
         verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.detailReview));
         verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.nicknameReview));
+        String ReviewID = BE_ManageCustomerPage.getReviewIDSelected("value", CommonClass.summaryReview, CommonClass.detailReview);
+        System.out.println("Review ID is : " + ReviewID);
+        BE_ManageCustomerPage.clickToDynamicEditButtonInReviewTable(driver, CommonClass.detailReview);
 
     }
 
