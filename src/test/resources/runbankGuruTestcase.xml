@@ -13,7 +13,7 @@
 		<parameter name="browser" value="chrome" />
 
 		<classes>
-<!-- 			<class name="com.liveguru.backend.Common_FrontEnd_Step" /> -->
+ 			<class name="com.liveguru.backend.Common_FrontEnd_Step" />
 			<class name="com.liveguru.backend.BACKEND_TESTCASE" />
 		</classes>
 	</test>

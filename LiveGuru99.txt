@@ -1,3 +1,19 @@
-2023-07-19 22:05:13,082 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED===
-2023-07-19 22:05:26,055 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 11
-2023-07-19 22:05:26,056 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (997b4555969f86ac6a96fcb90f54e9b3)
+2023-07-20 14:11:21,293 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
+2023-07-20 14:11:21,312 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
+2023-07-20 14:11:24,346 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
+2023-07-20 14:11:24,509 INFO  com.liveguru.backend.CommonClass - ===PASSED==
+2023-07-20 14:11:24,513 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
+2023-07-20 14:11:25,310 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
+2023-07-20 14:11:25,418 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
+2023-07-20 14:11:42,763 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED===
+2023-07-20 14:11:55,149 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 14:11:55,180 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 14:11:55,210 INFO  com.liveguru.backend.BACKEND_TESTCASE - ===PASSED==
+2023-07-20 14:11:55,217 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 10
+2023-07-20 14:11:55,217 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (b3016046c504a44adcba862209c68039)
+2023-07-20 14:11:56,864 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 10
+2023-07-20 14:11:56,864 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
+2023-07-20 14:11:56,868 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-BMKO81V', ip: '10.5.21.39', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.16.1'
+Driver info: driver.version: RemoteWebDriver

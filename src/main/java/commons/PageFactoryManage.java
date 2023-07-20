@@ -2,17 +2,7 @@ package commons;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObject.BE_LoginPageObject;
-import pageObject.BE_ManageCustomerPageObject;
-import pageObject.FE_AdvanceSearchPageObject;
-import pageObject.FE_CheckoutCartPageObject;
-import pageObject.FE_CompareWindowPageObject;
-import pageObject.FE_HomePageObject;
-import pageObject.FE_Landing_Cart_ProductPageObject;
-import pageObject.FE_OrderPageObject;
-import pageObject.FE_RegisterPageObject;
-import pageObject.FE_ShoppingCartPageObject;
-import pageObject.FE_WishListWindowPageObject;
+import pageObject.*;
 
 public class PageFactoryManage {
 
@@ -61,4 +51,7 @@ public class PageFactoryManage {
 		return new BE_ManageCustomerPageObject(driver);
 	}
 
+    public static FE_ReviewPageObject getReviewPage(WebDriver driver) {
+    	return new FE_ReviewPageObject(driver);
+	}
 }

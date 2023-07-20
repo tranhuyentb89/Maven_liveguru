@@ -3,14 +3,10 @@ package com.liveguru.backend;
 import commons.AbstractTest;
 import commons.Contants;
 import commons.PageFactoryManage;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.safari.SafariDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -18,15 +14,10 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import pageObject.BE_LoginPageObject;
 import pageObject.BE_ManageCustomerPageObject;
+import pageObject.FE_ReviewPageObject;
 
-import java.io.File;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 
 public class BACKEND_TESTCASE extends AbstractTest {
@@ -37,6 +28,10 @@ public class BACKEND_TESTCASE extends AbstractTest {
     BE_LoginPageObject BE_loginPage;
     BE_ManageCustomerPageObject BE_ManageCustomerPage;
     CommonClass newCustomer;
+    JavascriptExecutor js;
+    FE_ReviewPageObject FE_ReviewPage;
+    String fileDirectory = System.getProperty("user.dir") + "\\downloadFile";
+
 
     @Parameters("browser")
     @BeforeClass
@@ -51,10 +46,9 @@ public class BACKEND_TESTCASE extends AbstractTest {
         if (BE_ManageCustomerPage.isIncomeMessageDisplayed()) {
             BE_ManageCustomerPage.clickToCloseIncomMessage();
         }
-
     }
 
-    //	@Test
+//    @Test
     public void TC_01_DeleteAccount() {
         log.info("Buoc 1: Verrify Email dang ky ton tai trong bang customer");
         verifyEquals(BE_ManageCustomerPage.getDynamicRowOfTable(driver, CommonClass.email),
@@ -75,7 +69,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
     }
 
-    //	@Test
+//    @Test
     public void TC_02_DeleteAccount_DeleteReview() {
         driver.get(Contants.FRONTEND_URL);
         newCustomer = new CommonClass(driver);
@@ -119,7 +113,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
     @Test
     public void TC_03_InvoiceCanBePrint() throws InterruptedException, MalformedURLException {
-        //driver.get(Contants.BACKEND_URL);
+//        driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
 //		BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
 //		BE_loginPage.inputToDynamicTextbox(driver, "guru99com", "login");
@@ -128,7 +122,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 //		BE_ManageCustomerPage.clickToCloseIncomMessage();
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Sales");
         BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Orders");
-            BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
         BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Canceled", "sales_order_grid_filter_status");
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
         Thread.sleep(1000);
@@ -144,33 +138,48 @@ public class BACKEND_TESTCASE extends AbstractTest {
         BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Print Invoices", "sales_order_grid_massaction-select");
 
         BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
-        Thread.sleep(10000);
-
+        BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Log Out");
+        driver.get("chrome://downloads/");
+        BE_ManageCustomerPage.fileDownloadedOrNot(driver, fileDirectory);
     }
-    String fileDirectory = System.getProperty("user.dir") + "\\downloadFile";
 
-    public void getFileName()  {
-        JavascriptExecutor js1 = (JavascriptExecutor)driver;
-    }
-    public void fileDownloadedOrNot(){
-        File folder = new File(fileDirectory);
-        File[] allFiles = new File(folder.getPath()).listFiles();
-        for (File file: allFiles){
-            String eachFile = file.getName();
-            System.out.println(eachFile + "is downloaded");
-            if (eachFile.contains(getFileNameInLocation(fileDirectory))){
-                System.out.println("OK OK nhe");
-            }
-            else continue;
+    @Test
+    public void TC_04_ProductReviewMerchanism(){
+        driver.get(Contants.REVIEW_PRODUCT_URL);
+//        newCustomer = new CommonClass(driver);
+//        newCustomer.AddReview();
+        FE_ReviewPage = PageFactoryManage.getReviewPage(driver);
+        FE_ReviewPage.clearTextInTextBox(driver, "summary_field");
+        FE_ReviewPage.clearTextInTextBox(driver, "nickname_field");
+        FE_ReviewPage.clearTextInAreaBox(driver, "review_field");
+        FE_ReviewPage.clickToDynamicLinkButton(driver, "Submit Review");
+        FE_ReviewPage.clickToDynamicCheckbox(driver, "Quality 1_5");
+        FE_ReviewPage.inputToDynamicTextbox(driver, CommonClass.summaryReview, "summary_field");
+        FE_ReviewPage.inputToDynamicTextbox(driver, CommonClass.nicknameReview, "nickname_field");
+        FE_ReviewPage.inputToDynamicTextArea(driver, CommonClass.detailReview, "review_field");
+        FE_ReviewPage.clickToDynamicLinkButton(driver, "Submit Review");
+
+        driver.get(Contants.BACKEND_URL);
+        BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
+        BE_loginPage.inputToDynamicTextbox(driver, "user01", "username");
+        BE_loginPage.inputToDynamicTextbox(driver, "guru99com", "login");
+        BE_loginPage.clickToLoginButton();
+        BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
+        if (BE_ManageCustomerPage.isIncomeMessageDisplayed()) {
+            BE_ManageCustomerPage.clickToCloseIncomMessage();
         }
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Catalog");
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Reviews and Ratings");
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Customer Reviews");
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Pending Reviews");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Pending Reviews");
+        verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.summaryReview));
+        verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.detailReview));
+        verifyTrue(BE_ManageCustomerPage.isReviewColumnDisplayed(CommonClass.nicknameReview));
+
     }
 
-    public String getFileNameInLocation(String locator){
-        Path path = Paths.get(locator);
-        Path fileName = path.getFileName();
-        System.out.println("File download is " + fileName);
-        return fileName.toString();
-    }
+
     public void TC_06_VerifySortIsWorkingCorrectly() throws InterruptedException {
 //		driver.get(Contants.BACKEND_URL);
 //		BE_loginPage = PageFactoryManage.getBE_LoginPage(driver);
@@ -240,18 +249,6 @@ public class BACKEND_TESTCASE extends AbstractTest {
 //        }
 //
 //    }​
-    public void TC_03_ControlTable() {
-        List<WebElement> rows_table = driver.findElements(
-                By.xpath("//table[@id='reviwGrid_table']//tbody//tr"));
-        int colSize = rows_table.size();
-        List<WebElement> column_table = driver.findElements(
-                By.xpath("//table[@id='reviwGrid_table']//tbody//tr//td[4]"));
-        for (int i = 0; i < colSize; i++) {
-            System.out.println(column_table.get(i).getText());
-        }
-
-    }
-
     public int randomNumber() {
         Random random = new Random();
         return random.nextInt(999999);

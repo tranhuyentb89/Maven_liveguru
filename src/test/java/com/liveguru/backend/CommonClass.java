@@ -62,6 +62,7 @@ public class CommonClass extends AbstractTest {
 	}
 	
 	public void AddReview() {
+		FE_Landing_Cart_Product = PageFactoryManage.getLandingPage(driver);
 		FE_Landing_Cart_Product.clickToDynamicMenu_ProductName(driver, "TV");
 		FE_Landing_Cart_Product.clickToDynamicMenu_ProductName(driver, "Samsung LCD");
 		FE_Landing_Cart_Product.clickToDynamicMenu_ProductName(driver, "Add Your Review");
