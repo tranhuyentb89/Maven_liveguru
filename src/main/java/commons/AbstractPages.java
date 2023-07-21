@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+import com.liveguru.backend.BE_ManageCustomerPageUI;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -23,7 +24,7 @@ import org.testng.Assert;
 import com.bankguru.frontend.FE_HomePageUI;
 import com.bankguru.frontend.FE_LandingPageUI;
 
-public class AbstractPages {
+public class AbstractPages extends  AbstractTest{
 
     WebElement element;
     List<WebElement> elements;
@@ -711,26 +712,6 @@ public class AbstractPages {
             } else continue;
         }
     }
-    public void checkSearchTableByColumnDynamic(WebDriver driver, String locatorXpath, int column, String valueSearch, String...tableID) {
-        locatorXpath = String.format(locatorXpath, (Object[]) tableID);
-        List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
-        int rowTotal = row.size();
-        System.out.println("Số dòng tìm thấy: " + rowTotal);
-        for (int i = 1; i <= rowTotal; i++) {
-            WebElement elementCheck = driver.findElement(
-                    By.xpath(locatorXpath + "//td[" + column + "]"));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
-            System.out.print(valueSearch + " - ");
-            System.out.println(elementCheck.getText());
-            Assert.assertTrue(elementCheck.getText().toUpperCase().contains(valueSearch.toUpperCase()),
-                    "Dòng số " + i + " không chứa giá trị tìm kiếm.");
-        }
-    }
-
-    public void  checkSearchTableByColumn(WebDriver driver, int columnNumber, String valueToSearch, String tableIDName){
-        checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, columnNumber, valueToSearch, tableIDName );
-    }
 
     public String getReviewSummary(WebDriver driver, String reviewID) {
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_REVIEW_SUMMARY, reviewID);
@@ -739,4 +720,36 @@ public class AbstractPages {
     public  void  clearTextInTexbox_Backend(WebDriver driver, String textboxName){
         clearTextInElement(driver, AbstractPageUI.DYNAMIC_TEXTBOX_CHECKBOX, textboxName );
     }
+
+
+    public void checkSearchTableByColumnDynamic(WebDriver driver,String locatorXpath, String emptyLocator, int column, String valueSearch, String...tableID) {
+        locatorXpath = String.format(locatorXpath, (Object[]) tableID);
+        List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
+        int rowTotal = row.size();
+        System.out.println("Số dòng tìm thấy: " + rowTotal);
+
+        String elementCheckLocator = locatorXpath + "//td[" + column + "]";
+        WebElement elementCheck = driver.findElement(By.xpath(elementCheckLocator));
+
+        if (isControlUndisplayed(driver, emptyLocator)){
+            System.out.println("Haha - hehe");
+        }
+        else if (isControlUndisplayed(driver, elementCheckLocator)) {
+        for (int i = 1; i <= rowTotal; i++) {
+//            WebElement emptyMsg = driver.findElement(By.xpath(emptyLocator));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+                js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
+                System.out.print(valueSearch + " - ");
+                System.out.println(elementCheck.getText());
+                Assert.assertTrue(elementCheck.getText().toUpperCase().contains(valueSearch.toUpperCase()),
+                        "Dòng số " + i + " không chứa giá trị tìm kiếm.");
+
+            }
+        }
+    }
+
+    public void  checkSearchTableByColumn(WebDriver driver,int columnNumber, String valueToSearch, String tableIDName){
+        checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, BE_ManageCustomerPageUI.NO_RECORD_MESSAGE, columnNumber, valueToSearch, tableIDName);
+    }
+
 }

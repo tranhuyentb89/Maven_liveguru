@@ -1,6 +1,7 @@
 package pageObject;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 
 import com.liveguru.backend.BE_ManageCustomerPageUI;
@@ -8,6 +9,7 @@ import com.liveguru.backend.BE_ManageCustomerPageUI;
 import commons.AbstractPageUI;
 import commons.AbstractPages;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import java.util.List;
 
@@ -59,4 +61,6 @@ public class BE_ManageCustomerPageObject extends AbstractPages {
     public String getTextOfErrorMesg() {
         return getTextOfElement(driver, BE_ManageCustomerPageUI.ERR_MSG);
     }
+
+
 }

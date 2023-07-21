@@ -6,5 +6,5 @@ public class Contants {
 	public static  final String REVIEW_PRODUCT_URL ="http://live.techpanda.org/index.php/review/product/list/id/1";
 
 	public static final int SHORT_TIMEOUT = 5;
-	public static final int LONG_TIMEOUT = 30000;
+	public static final int LONG_TIMEOUT = 30;
 }
