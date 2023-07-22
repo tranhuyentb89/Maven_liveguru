@@ -245,7 +245,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
         BE_ManageCustomerPage.inputToDynamicTextbox(driver, CommonClass.randomNumber() +"", "customerGrid_filter_Telephone");
         BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
         Thread.sleep(3000);
-        BE_ManageCustomerPage.checkSearchTableByColumn(driver,4, CommonClass.email, "customerGrid_table");
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,6, CommonClass.randomNumber() +"", "customerGrid_table");
 
 //        verifyTrue(BE_ManageCustomerPage.isNoRecordFoundMsgDisplayed());
 
@@ -253,7 +253,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
         BE_ManageCustomerPage.inputToDynamicTextbox(driver, CommonClass.ZipToSearch, "customerGrid_filter_billing_postcode");
         BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
         Thread.sleep(3000);
-        BE_ManageCustomerPage.checkSearchTableByColumn(driver,4, CommonClass.email, "customerGrid_table");
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,7, CommonClass.ZipToSearch, "customerGrid_table");
 
 //        verifyTrue(BE_ManageCustomerPage.isNoRecordFoundMsgDisplayed());
 

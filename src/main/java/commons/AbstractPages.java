@@ -735,7 +735,7 @@ public class AbstractPages extends AbstractTest {
                 System.out.println("ABC DEF");
         }
         else {
-            for (int i = 1 ; i <= rowTotal -1 ; i++) {
+            for (int i = 0 ; i <= rowTotal -1 ; i++) {
 //            WebElement emptyMsg = driver.findElement(By.xpath(emptyLocator));
 //            JavascriptExecutor js = (JavascriptExecutor) driver;
 //            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
