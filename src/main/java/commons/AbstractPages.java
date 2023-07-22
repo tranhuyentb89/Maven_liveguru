@@ -24,7 +24,7 @@ import org.testng.Assert;
 import com.bankguru.frontend.FE_HomePageUI;
 import com.bankguru.frontend.FE_LandingPageUI;
 
-public class AbstractPages extends  AbstractTest{
+public class AbstractPages extends AbstractTest {
 
     WebElement element;
     List<WebElement> elements;
@@ -663,7 +663,7 @@ public class AbstractPages extends  AbstractTest{
         clickToElement(driver, AbstractPageUI.DYNAMIC_CHECKBOX_IN_REVIEW_TABLE, value01, value02);
     }
 
-    public void clickToDynamicEditButtonInReviewTable(WebDriver driver, String detailReview){
+    public void clickToDynamicEditButtonInReviewTable(WebDriver driver, String detailReview) {
         clickToElement(driver, AbstractPageUI.DYNAMIC_EDIT_BUTTON_IN_REVIEW_TABLE, detailReview);
     }
 
@@ -717,39 +717,38 @@ public class AbstractPages extends  AbstractTest{
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_REVIEW_SUMMARY, reviewID);
     }
 
-    public  void  clearTextInTexbox_Backend(WebDriver driver, String textboxName){
-        clearTextInElement(driver, AbstractPageUI.DYNAMIC_TEXTBOX_CHECKBOX, textboxName );
+    public void clearTextInTexbox_Backend(WebDriver driver, String textboxName) {
+        clearTextInElement(driver, AbstractPageUI.DYNAMIC_TEXTBOX_CHECKBOX, textboxName);
     }
 
 
-    public void checkSearchTableByColumnDynamic(WebDriver driver,String locatorXpath, String emptyLocator, int column, String valueSearch, String...tableID) {
+    public void checkSearchTableByColumnDynamic(WebDriver driver, String locatorXpath, int column, String valueSearch, String... tableID) {
         locatorXpath = String.format(locatorXpath, (Object[]) tableID);
         List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
         int rowTotal = row.size();
         System.out.println("Số dòng tìm thấy: " + rowTotal);
 
         String elementCheckLocator = locatorXpath + "//td[" + column + "]";
-        WebElement elementCheck = driver.findElement(By.xpath(elementCheckLocator));
-
-        if (isControlUndisplayed(driver, emptyLocator)){
-            System.out.println("Haha - hehe");
+        List<WebElement> elementCheck = driver.findElements(By.xpath(elementCheckLocator));
+        if (elementCheck.size() ==0 )
+        {
+                System.out.println("ABC DEF");
         }
-        else if (isControlUndisplayed(driver, elementCheckLocator)) {
-        for (int i = 1; i <= rowTotal; i++) {
+        else {
+            for (int i = 1 ; i <= rowTotal -1 ; i++) {
 //            WebElement emptyMsg = driver.findElement(By.xpath(emptyLocator));
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-                js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
+//            JavascriptExecutor js = (JavascriptExecutor) driver;
+//            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
                 System.out.print(valueSearch + " - ");
-                System.out.println(elementCheck.getText());
-                Assert.assertTrue(elementCheck.getText().toUpperCase().contains(valueSearch.toUpperCase()),
+                System.out.println(elementCheck.get(i).getText());
+                Assert.assertTrue(elementCheck.get(i).getText().toUpperCase().contains(valueSearch.toUpperCase()),
                         "Dòng số " + i + " không chứa giá trị tìm kiếm.");
-
             }
         }
     }
 
-    public void  checkSearchTableByColumn(WebDriver driver,int columnNumber, String valueToSearch, String tableIDName){
-        checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, BE_ManageCustomerPageUI.NO_RECORD_MESSAGE, columnNumber, valueToSearch, tableIDName);
+    public void checkSearchTableByColumn(WebDriver driver, int columnNumber, String valueToSearch, String tableIDName) {
+        checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, columnNumber, valueToSearch, tableIDName);
     }
 
 }
