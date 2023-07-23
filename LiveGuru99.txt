@@ -1,17 +1,22 @@
-2023-07-22 11:57:41,975 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
-2023-07-22 11:57:41,986 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
-2023-07-22 11:57:42,729 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
-2023-07-22 11:57:42,771 INFO  com.liveguru.backend.CommonClass - ===PASSED==
-2023-07-22 11:57:42,774 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
-2023-07-22 11:57:43,485 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
-2023-07-22 11:57:43,574 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
-2023-07-22 11:58:42,021 INFO  com.liveguru.backend.BACKEND_TESTCASE - OS name = windows 10
-2023-07-22 11:58:42,021 INFO  com.liveguru.backend.BACKEND_TESTCASE - Driver instance name = chromedriver: chrome on windows (1f19d0704712465f6f2cece1459ef74a)
-2023-07-22 11:58:43,429 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 10
-2023-07-22 11:58:43,429 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
-2023-07-22 11:58:43,441 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
+2023-07-23 20:48:44,317 INFO  com.liveguru.backend.CommonClass - Register 01: Open Landing Page
+2023-07-23 20:48:44,325 INFO  com.liveguru.backend.CommonClass - Register 02: Click to Register Button
+2023-07-23 20:48:44,860 INFO  com.liveguru.backend.CommonClass - Register 03: Verify register form displayed
+2023-07-23 20:48:44,888 INFO  com.liveguru.backend.CommonClass - ===PASSED==
+2023-07-23 20:48:44,890 INFO  com.liveguru.backend.CommonClass - Register 04: Input to textbox
+2023-07-23 20:48:45,381 INFO  com.liveguru.backend.CommonClass - Register 05: Checked on checkbox
+2023-07-23 20:48:45,440 INFO  com.liveguru.backend.CommonClass - Register 06: Click to Register Button
+2023-07-23 20:48:58,648 INFO  com.liveguru.backend.BE_CustomerManage - Buoc 1: Verrify Email dang ky ton tai trong bang customer
+2023-07-23 20:48:58,692 INFO  com.liveguru.backend.BE_CustomerManage - ===PASSED===
+2023-07-23 20:48:58,692 INFO  com.liveguru.backend.BE_CustomerManage - Buoc 2: Click on checkbox customer vua tao
+2023-07-23 20:48:58,777 INFO  com.liveguru.backend.BE_CustomerManage - Verify time are corrected
+2023-07-23 20:48:58,777 INFO  com.liveguru.backend.BE_CustomerManage - ===FAILED===
+2023-07-23 20:48:58,909 INFO  com.liveguru.backend.BE_CustomerManage - OS name = windows 11
+2023-07-23 20:48:58,909 INFO  com.liveguru.backend.BE_CustomerManage - Driver instance name = chromedriver: chrome on windows (80a671f82681926d5587e9e6e312a984)
+2023-07-23 20:48:59,717 INFO  com.liveguru.backend.Common_FrontEnd_Step - OS name = windows 11
+2023-07-23 20:48:59,717 INFO  com.liveguru.backend.Common_FrontEnd_Step - Driver instance name = chromedriver: chrome on windows (null)
+2023-07-23 20:48:59,724 INFO  com.liveguru.backend.Common_FrontEnd_Step - Session ID is null. Using WebDriver after calling quit()?
 Build info: version: '4.10.0', revision: 'c14d967899'
-System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.16.1'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.14'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
 Command: [null, deleteAllCookies {}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 114.0.5735.199, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Users\ADMIN\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:55216}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:55216/devtoo..., se:cdpVersion: 114.0.5735.199, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 115.0.5790.102, chrome: {chromedriverVersion: 114.0.5735.90 (386bc09e8f4f..., userDataDir: C:\Users\Hi\AppData\Local\T...}, goog:chromeOptions: {debuggerAddress: localhost:59599}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:59599/devtoo..., se:cdpVersion: 115.0.5790.102, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}

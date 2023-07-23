@@ -1,6 +1,11 @@
 package com.liveguru.backend;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
 import java.util.Random;
+import java.util.TimeZone;
 
 import org.openqa.selenium.WebDriver;
 
@@ -20,6 +25,7 @@ public class CommonClass extends AbstractTest {
 	FE_HomePageObject FE_HomePage;
 	public static String firstName, lastName, confirmPass, middleName, email, password, phone;
 	public static String ZipToSearch ="550000";
+	public static String timeCreatedCustomer;
 
 	public static String detailReview, summaryReview, nicknameReview;
 
@@ -60,7 +66,16 @@ public class CommonClass extends AbstractTest {
 
 		log.info("Register 06: Click to Register Button");
 		FE_RegisterPage.clickToRegisterButton();
+		timeCreatedCustomer = getDateTimeCreated();
+		System.out.println("Thoi gian la : " + timeCreatedCustomer);
+	}
 
+	public static String getDateTimeCreated(){
+		DateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy H:mm:ss aaa");
+		Date date = new Date();
+//		dateFormat.setTimeZone(TimeZone.getTimeZone("UTC-11:00"));
+		String datePrint = dateFormat.format(date);
+		return datePrint;
 	}
 	
 	public void AddReview() {
@@ -77,6 +92,12 @@ public class CommonClass extends AbstractTest {
 		FE_Landing_Cart_Product.inputToDynamicTextbox(driver, nicknameReview, "nickname_field");
 		FE_Landing_Cart_Product.inputToDynamicTextArea(driver, detailReview, "review_field");
 		FE_Landing_Cart_Product.clickToDynamicLinkButton(driver, "Submit Review");
+	}
+
+	public String spilitString(String stringCut, int i){
+		String[] words = stringCut.split("\\s");// tach chuoi dua tren khoang trang
+		// su dung vong lap foreach de in cac element cua mang chuoi thu duoc
+		return words[i].toString();
 	}
 	
 	public static int randomNumber() {

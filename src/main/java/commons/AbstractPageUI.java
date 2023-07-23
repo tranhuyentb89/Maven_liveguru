@@ -47,6 +47,11 @@ public class AbstractPageUI {
 	
 	public static final String INVOICE_NUMBER_COLUMN = "//table[@id='sales_invoice_grid_table']//td[%s]";
 	public  static final String DYNAMIC_TABLE_BACKEND ="//table[@id='%s']//tbody//tr";
+	public static final String NUMBER_OF_ROW_IN_TABLE_DROPDOWN_PARENT ="//select[@name='limit']";
+	public static final String NUMBER_OF_ROW_IN_TABLE_DROPDOWN_CHILD ="//select[@name='limit']//option";
+	public static final String NUMBER_OF_ITEM_SELECTED = "//strong[contains(@id,'massaction-count')]";
 
-
+	public static final String DYNAMIC_COLUMN_IN_DYNAMIC_TABLE ="//table[@id='%s']//td[contains(text(),'%s')]//following-sibling::td[%s]";
+	public static final String DYNAMIC_TOTAL_ITEMS ="//span[@id='%s']";
+	public static final String TOTAL_RECORD_FOUND ="//td[@class='pager']";
 }

@@ -226,7 +226,7 @@ public class BACKEND_TESTCASE extends AbstractTest {
 
     }
 
-    @Test
+//    @Test
     public void TC_07_SearchFunctionWorking() throws InterruptedException {
         driver.get(Contants.BACKEND_URL);
         BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
@@ -255,28 +255,38 @@ public class BACKEND_TESTCASE extends AbstractTest {
         Thread.sleep(3000);
         BE_ManageCustomerPage.checkSearchTableByColumn(driver,7, CommonClass.ZipToSearch, "customerGrid_table");
 
-//        verifyTrue(BE_ManageCustomerPage.isNoRecordFoundMsgDisplayed());
+        BE_ManageCustomerPage.clearTextInTexbox_Backend(driver, "customerGrid_filter_billing_postcode");
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Vietnam", "customerGrid_filter_billing_country_id");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,8, "Vietnam", "customerGrid_table");
 
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "All Countries", "customerGrid_filter_billing_country_id");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, "Cam Le", "customerGrid_filter_billing_postcode");
+        BE_ManageCustomerPage.clickToDynamicLinkButtonJS(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.checkSearchTableByColumn(driver,9, "Cam Le", "customerGrid_table");
     }
 
-    //	public void checkSearchTableByColumn(int column, String value) {
-//
-//		List<WebElement> row = driver.findElements(By.xpath("//table[@id='reviwGrid_table']//tbody//tr"));
-//        int rowTotal = row.size();
-//
-//        System.out.println("Số dòng tìm thấy: " + rowTotal);
-//
-//        for (int i = 1; i <= rowTotal; i++) 
-//        {
-//            WebElement elementCheck = driver.findElement(By.xpath("//table[@id='reviwGrid_table']//tbody//tr["+ i +"]//td["+ column +"]"));
-//            JavascriptExecutor js = (JavascriptExecutor) driver;
-//            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
-//            System.out.print(value + " - ");
-//            System.out.println(elementCheck.getText());
-//            Assert.assertTrue(elementCheck.getText().toUpperCase().contains(value.toUpperCase()), "Dòng số " + i + " không chứa giá trị tìm kiếm.");
-//        }
-//
-//    }​
+    @Test
+    public void  TC_08_SelectCheckboxWork() throws InterruptedException {
+        driver.get(Contants.BACKEND_URL);
+        BE_ManageCustomerPage = PageFactoryManage.getManageCustomerPage(driver);
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Sales");
+        BE_ManageCustomerPage.hoverMouseToMenuItem(driver, "Orders");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Orders");
+        BE_ManageCustomerPage.selectDropdownToShowNumberOfRowInTable(driver, "200");
+        Thread.sleep(2000);
+        BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Select Visible");
+        Thread.sleep(2000);
+
+        verifyEquals(BE_ManageCustomerPage.getNumberOfItemSelected(driver), "200");
+//        verifyTrue(driver.findElement(By.xpath("//td[contains(text(),'100019734')]//preceding-sibling::td//input[@type='checkbox']")).isSelected());
+        BE_ManageCustomerPage.verifyCheckedCheckbox(driver, "sales_order_grid_table");
+    }
     public int randomNumber() {
         Random random = new Random();
         return random.nextInt(999999);

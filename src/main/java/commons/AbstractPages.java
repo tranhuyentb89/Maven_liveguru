@@ -726,29 +726,65 @@ public class AbstractPages extends AbstractTest {
         locatorXpath = String.format(locatorXpath, (Object[]) tableID);
         List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
         int rowTotal = row.size();
-        System.out.println("Số dòng tìm thấy: " + rowTotal);
-
         String elementCheckLocator = locatorXpath + "//td[" + column + "]";
         List<WebElement> elementCheck = driver.findElements(By.xpath(elementCheckLocator));
         if (elementCheck.size() ==0 )
         {
-                System.out.println("ABC DEF");
+                WebElement noRecordFound = driver.findElement(By.xpath(BE_ManageCustomerPageUI.NO_RECORD_MESSAGE));
+                Assert.assertEquals(noRecordFound.getText(), "No records found.");
+                System.out.println("Không tìm thấy bản ghi nào:  " + noRecordFound.getText());
         }
         else {
             for (int i = 0 ; i <= rowTotal -1 ; i++) {
-//            WebElement emptyMsg = driver.findElement(By.xpath(emptyLocator));
-//            JavascriptExecutor js = (JavascriptExecutor) driver;
-//            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
-                System.out.print(valueSearch + " - ");
-                System.out.println(elementCheck.get(i).getText());
+//                System.out.print(valueSearch + " - ");
+//                System.out.println(elementCheck.get(i).getText());
                 Assert.assertTrue(elementCheck.get(i).getText().toUpperCase().contains(valueSearch.toUpperCase()),
                         "Dòng số " + i + " không chứa giá trị tìm kiếm.");
             }
         }
     }
 
+    public void verifyCheckboxIsCheckedDynamic(WebDriver driver, String locatorXpath, String...values){
+        locatorXpath = String.format(locatorXpath, (Object[]) values);
+        List<WebElement> row = driver.findElements(By.xpath(locatorXpath));
+        int rowTotal = row.size();
+        for (int i =0 ; i < rowTotal -1; i++){
+            WebElement elementCheck = driver.findElement(By.xpath(locatorXpath + "//td[" + 1 + "]//input"));
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+            js.executeScript("arguments[0].scrollIntoView(true);", elementCheck);
+            Assert.assertTrue(elementCheck.isSelected(), "Dong so : " + i + " is not selected");
+        }
+    }
+
+    public void verifyCheckedCheckbox(WebDriver driver, String tableIDName){
+        verifyCheckboxIsCheckedDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, tableIDName);
+    }
     public void checkSearchTableByColumn(WebDriver driver, int columnNumber, String valueToSearch, String tableIDName) {
         checkSearchTableByColumnDynamic(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, columnNumber, valueToSearch, tableIDName);
+    }
+
+    public void selectDropdownToShowNumberOfRowInTable(WebDriver driver, String numberToSelect){
+        selectItemInCustomDropdown(driver, AbstractPageUI.NUMBER_OF_ROW_IN_TABLE_DROPDOWN_PARENT, AbstractPageUI.NUMBER_OF_ROW_IN_TABLE_DROPDOWN_CHILD, numberToSelect);
+    }
+
+    public Object getNumberOfItemSelected(WebDriver driver) {
+       return getTextOfElement(driver, AbstractPageUI.NUMBER_OF_ITEM_SELECTED);
+    }
+
+    public String getTextOfColumnInTable(WebDriver driver, String TableID, String ColumnToIndex, String colNumber) {
+        highlightElement(driver, AbstractPageUI.DYNAMIC_COLUMN_IN_DYNAMIC_TABLE, TableID, ColumnToIndex, colNumber);
+        return getTextOfElement(driver, AbstractPageUI.DYNAMIC_COLUMN_IN_DYNAMIC_TABLE, TableID, ColumnToIndex, colNumber);
+    }
+
+    public String totalItemsOfTable(WebDriver driver, String tableID){
+        return getTextOfElement(driver, AbstractPageUI.DYNAMIC_TOTAL_ITEMS, tableID);
+    }
+
+    public String textTotalRecords(WebDriver driver){
+        //        String text = driver.findElement(By.xpath("//td[@class='pager']")).getText();
+//        System.out.println(text.substring(text.indexOf("Total")));
+        String text = getTextOfElement(driver, AbstractPageUI.TOTAL_RECORD_FOUND);
+        return text.substring(text.indexOf("Total"));
     }
 
 }

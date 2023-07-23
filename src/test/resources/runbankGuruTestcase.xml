@@ -14,7 +14,7 @@
 
 		<classes>
  			<class name="com.liveguru.backend.Common_FrontEnd_Step" />
-			<class name="com.liveguru.backend.BACKEND_TESTCASE" />
+			<class name="com.liveguru.backend.BE_CustomerManage" />
 		</classes>
 	</test>
 </suite>
