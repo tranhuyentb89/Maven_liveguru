@@ -48,9 +48,17 @@ public class BE_CustomerManage extends AbstractTest {
     @Test
     public void TC_02_CountCustomerNumber(){
         //phan nay để lấy ra đoạn "Total 23484 records found"
-            String numberOfItems = BE_ManageCustomerPage.totalItemsOfTable(driver, "customerGrid-total-count");
+            String numberOfItems = BE_ManageCustomerPage.textTotalRecords(driver);
+            String numberHidden = BE_ManageCustomerPage.totalItemsOfTable(driver, "class", "customerGrid-total-count");
+            verifyEquals("Total "+ numberHidden +" records found", numberOfItems);
+            System.out.println("SO record la : " + numberHidden);
+    }
 
-
+    @Test public void TC_03_SelectedAllItem(){
+        BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Select All");
+        String numberOfItemSelect = BE_ManageCustomerPage.getNumberOfItemSelected(driver).toString();
+        String numberOfItems = BE_ManageCustomerPage.textTotalRecords(driver);
+        verifyEquals(CommonClass.spilitString("numberOfItems", 2), numberOfItems);
     }
 
     public int randomNumber() {

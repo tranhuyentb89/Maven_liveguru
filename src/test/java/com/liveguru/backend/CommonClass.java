@@ -94,7 +94,7 @@ public class CommonClass extends AbstractTest {
 		FE_Landing_Cart_Product.clickToDynamicLinkButton(driver, "Submit Review");
 	}
 
-	public String spilitString(String stringCut, int i){
+	public static String spilitString(String stringCut, int i){
 		String[] words = stringCut.split("\\s");// tach chuoi dua tren khoang trang
 		// su dung vong lap foreach de in cac element cua mang chuoi thu duoc
 		return words[i].toString();

@@ -387,6 +387,14 @@ public class AbstractPages extends AbstractTest {
         return jsExecuter.executeScript("arguments[0].removeAttribute('" + attribute + "');", element);
     }
 
+    public Object removeAttributeInDOM(WebDriver driver, String locatorXpath,String attribute, String...values) {
+        locatorXpath = String.format(locatorXpath, (Object[]) values);
+        element = driver.findElement(By.xpath(locatorXpath));
+        jsExecuter = (JavascriptExecutor) driver;
+        return jsExecuter.executeScript("arguments[0].removeAttribute('" + attribute + "');", element);
+    }
+
+
     public Object scrollToBottomPage(WebDriver driver) {
         jsExecuter = (JavascriptExecutor) driver;
         return jsExecuter.executeScript("window.scrollBy(0,document.body.scrollHeight)");
@@ -776,7 +784,8 @@ public class AbstractPages extends AbstractTest {
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_COLUMN_IN_DYNAMIC_TABLE, TableID, ColumnToIndex, colNumber);
     }
 
-    public String totalItemsOfTable(WebDriver driver, String tableID){
+    public String totalItemsOfTable(WebDriver driver, String atribute, String tableID){
+        removeAttributeInDOM(driver, AbstractPageUI.DYNAMIC_TOTAL_ITEMS, atribute, tableID);
         return getTextOfElement(driver, AbstractPageUI.DYNAMIC_TOTAL_ITEMS, tableID);
     }
 
