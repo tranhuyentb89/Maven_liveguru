@@ -58,7 +58,9 @@ public class BE_CustomerManage extends AbstractTest {
         BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Select All");
         String numberOfItemSelect = BE_ManageCustomerPage.getNumberOfItemSelected(driver).toString();
         String numberOfItems = BE_ManageCustomerPage.textTotalRecords(driver);
-        verifyEquals(CommonClass.spilitString("numberOfItems", 2), numberOfItems);
+        System.out.println("numberOfItemSelect: "+ numberOfItemSelect );
+        System.out.println("numberOfItems: "+ numberOfItems);
+        verifyEquals(CommonClass.spilitString(numberOfItems, 1), numberOfItemSelect);
     }
 
     public int randomNumber() {
@@ -70,11 +72,5 @@ public class BE_CustomerManage extends AbstractTest {
     public void afterTest() {
         closeBrowserDriver();
     }
-
-
-
-
-
-
 
 }
