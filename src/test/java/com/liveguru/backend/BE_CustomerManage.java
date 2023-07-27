@@ -61,6 +61,7 @@ public class BE_CustomerManage extends AbstractTest {
         System.out.println("numberOfItemSelect: "+ numberOfItemSelect );
         System.out.println("numberOfItems: "+ numberOfItems);
         verifyEquals(CommonClass.spilitString(numberOfItems, 1), numberOfItemSelect);
+        BE_ManageCustomerPage.compareDisplayRowCOuntWithActualRowCount(driver);
     }
 
     public int randomNumber() {

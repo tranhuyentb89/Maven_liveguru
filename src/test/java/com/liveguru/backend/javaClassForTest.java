@@ -32,21 +32,19 @@ public class javaClassForTest {
         }
         //locating next button
         String nextButton = driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).getAttribute("class");
-        System.out.println(nextButton+ " - is next button");
+        System.out.println(nextButton + " - is next button");
         //duyet qua tat ca cac page cua table cho den nextButton cuoi cung va add name to list
         while (!nextButton.contains("disable")){
+
             driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).click();
             Thread.sleep(2000);
+            nextButton = driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).getAttribute("class");
+            System.out.println("Nexxt button disable or not --" + nextButton);
             firstCol = driver.findElements(By.cssSelector("#example>tbody>tr>td:nth-child(1)"));
             for (WebElement nameEl: firstCol){
                 colName.add(nameEl.getText());
+                System.out.println(nameEl.getText());
             }
-            nextButton = driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).getAttribute("class");
-            System.out.println("Nexxt button disable or not --" + nextButton);
-        }
-
-        for (String name: colName){
-            System.out.println("Day la : "+ name);
         }
 
         //counting size of the list

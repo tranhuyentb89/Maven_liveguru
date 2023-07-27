@@ -796,4 +796,16 @@ public class AbstractPages extends AbstractTest {
         return text.substring(text.indexOf("Total"));
     }
 
+    public void compareDisplayRowCOuntWithActualRowCount(WebDriver driver){
+        //Khai bao cac row cua cot so 2 table
+        List<WebElement> customerIDs = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr//td[2]"));
+        System.out.println("So dong cua trang so 1 la:  " + customerIDs.size());
+
+        List<String> colName = new ArrayList<>();
+        for (WebElement e: customerIDs){
+            colName.add(e.getText());
+            System.out.println(e.getText());
+        }
+    }
+
 }
