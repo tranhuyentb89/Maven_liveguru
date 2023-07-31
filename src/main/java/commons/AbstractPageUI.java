@@ -54,4 +54,5 @@ public class AbstractPageUI {
 	public static final String DYNAMIC_COLUMN_IN_DYNAMIC_TABLE ="//table[@id='%s']//td[contains(text(),'%s')]//following-sibling::td[%s]";
 	public static final String DYNAMIC_TOTAL_ITEMS ="//span[@id='%s']";
 	public static final String TOTAL_RECORD_FOUND ="//td[@class='pager']";
+	public static final String INPUT_TEXTBOX_WITH_NAME ="//input[@name='page']";
 }

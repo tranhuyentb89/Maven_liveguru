@@ -44,6 +44,14 @@ public class BE_CustomerManage extends AbstractTest {
         System.out.println("Time is : " + time);
         log.info("Verify time are corrected");
         verifyEquals(time, CommonClass.timeCreatedCustomer.toString());
+        log.info("Buoc 2: Click on checkbox customer vua tao");
+        BE_ManageCustomerPage.clickToDynamicCheckboxBE(driver, CommonClass.email);
+        System.out.println(CommonClass.email);
+        BE_ManageCustomerPage.selectDynamicDropdown_BE(driver, "Delete",
+                "customerGrid_massaction-select");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Submit");
+        BE_ManageCustomerPage.clickOKToAcceptDelete();
+
     }
     @Test
     public void TC_02_CountCustomerNumber(){
@@ -54,14 +62,33 @@ public class BE_CustomerManage extends AbstractTest {
             System.out.println("SO record la : " + numberHidden);
     }
 
-    @Test public void TC_03_SelectedAllItem(){
+    @Test
+    public void TC_03_SelectedAllItem() throws InterruptedException {
+        log.info("TC_03_Step 01: click to select all");
         BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Select All");
         String numberOfItemSelect = BE_ManageCustomerPage.getNumberOfItemSelected(driver).toString();
         String numberOfItems = BE_ManageCustomerPage.textTotalRecords(driver);
         System.out.println("numberOfItemSelect: "+ numberOfItemSelect );
         System.out.println("numberOfItems: "+ numberOfItems);
+
+        log.info("TC_03_Step 02: Verify number selected is corrected");
         verifyEquals(CommonClass.spilitString(numberOfItems, 1), numberOfItemSelect);
-        BE_ManageCustomerPage.compareDisplayRowCOuntWithActualRowCount(driver);
+
+        log.info("Step 03: Click to unSelected button");
+        BE_ManageCustomerPage.clickToDynamicMenu_ProductName(driver, "Unselect All");
+
+        log.info("Step 04: Select number of values is 200");
+        BE_ManageCustomerPage.selectDropdownToShowNumberOfRowInTable(driver, "200");
+        Thread.sleep(3000);
+        System.out.println(BE_ManageCustomerPage.getNumberRowOfTable(driver,"customerGrid_table"));
+
+        log.info("Verify number row of page is equal 200");
+        verifyEquals(BE_ManageCustomerPage.getNumberRowOfTable(driver,"customerGrid_table"), "200");
+    }
+
+    @Test
+    public void TC_04_VerifyWhenSearchWithID(){
+
     }
 
     public int randomNumber() {

@@ -795,8 +795,8 @@ public class AbstractPages extends AbstractTest {
         String text = getTextOfElement(driver, AbstractPageUI.TOTAL_RECORD_FOUND);
         return text.substring(text.indexOf("Total"));
     }
-
-    public void compareDisplayRowCOuntWithActualRowCount(WebDriver driver){
+// Hàm này tạm thời chưa dùng, số lượng bản ghi tương đối lớn, nên suy nghĩ cách khác
+    public void compareDisplayRowCOuntWithActualRowCount(WebDriver driver) throws InterruptedException {
         //Khai bao cac row cua cot so 2 table
         List<WebElement> customerIDs = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr//td[2]"));
         System.out.println("So dong cua trang so 1 la:  " + customerIDs.size());
@@ -806,6 +806,44 @@ public class AbstractPages extends AbstractTest {
             colName.add(e.getText());
             System.out.println(e.getText());
         }
+//        driver.findElement(By.xpath("//input[@class='input-text page']")).clear();
+//        driver.findElement(By.xpath("//input[@class='input-text page']")).sendKeys("1182");
+        String number = driver.findElement(By.xpath("//input[@class='input-text page']")).getAttribute("value");
+//        System.out.println("Number is :" + number);
+        String text = getTextOfElement(driver, AbstractPageUI.TOTAL_RECORD_FOUND);
+        String[] words = text.split("\\s");//tach chuoi dua tren khoang trang
+       //su dung vong lap foreach de in cac element cua mang chuoi thu duoc
+        System.out.println("words: " + words[2]);
+        int i = Integer.parseInt(words[2]);
+        System.out.println(i);
+        while (Integer.parseInt(number) != i){
+
+            driver.findElement(By.xpath("//img[@alt='Go to Next page']")).click();
+            Thread.sleep(3000);
+            number = driver.findElement(By.xpath("//input[@class='input-text page']")).getAttribute("value");
+            System.out.println("Nexxt button disable or not --" + number);
+            customerIDs = driver.findElements(By.xpath("//table[@id='customerGrid_table']//tbody//tr//td[2]"));
+            for (WebElement nameEl: customerIDs){
+                colName.add(nameEl.getText());
+                System.out.println(nameEl.getText());
+            }
+
+        }
+    }
+
+    public void inputToDynamicTextboxWithName(WebDriver driver, String valueInput, String boxName){
+        highlightElement(driver, AbstractPageUI.INPUT_TEXTBOX_WITH_NAME, valueInput, boxName);
+        sendKeyToElement(driver, AbstractPageUI.INPUT_TEXTBOX_WITH_NAME, valueInput, boxName);
+    }
+
+    public String getNumberOfRowInDynamicTable(WebDriver driver, String locatorXpath, String...values){
+        locatorXpath = String.format(locatorXpath, (Object[]) values);
+        List<WebElement> valuesToCount = driver.findElements(By.xpath(locatorXpath));
+        return String.valueOf(valuesToCount.size());
+    }
+
+    public String getNumberRowOfTable(WebDriver driver, String values){
+       return getNumberOfRowInDynamicTable(driver, AbstractPageUI.DYNAMIC_TABLE_BACKEND, values);
     }
 
 }

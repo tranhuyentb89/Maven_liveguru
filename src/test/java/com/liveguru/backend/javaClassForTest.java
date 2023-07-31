@@ -2,6 +2,7 @@ package com.liveguru.backend;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,9 +35,13 @@ public class javaClassForTest {
         String nextButton = driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).getAttribute("class");
         System.out.println(nextButton + " - is next button");
         //duyet qua tat ca cac page cua table cho den nextButton cuoi cung va add name to list
+        JavascriptExecutor executor = (JavascriptExecutor)driver;
+
         while (!nextButton.contains("disable")){
 
-            driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).click();
+            WebElement element= driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]"));
+            executor.executeScript("arguments[0].click();", element);
+
             Thread.sleep(2000);
             nextButton = driver.findElement(By.xpath("//a[contains(@class,'paginate_button next')]")).getAttribute("class");
             System.out.println("Nexxt button disable or not --" + nextButton);
