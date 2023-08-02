@@ -806,18 +806,15 @@ public class AbstractPages extends AbstractTest {
             colName.add(e.getText());
             System.out.println(e.getText());
         }
-//        driver.findElement(By.xpath("//input[@class='input-text page']")).clear();
-//        driver.findElement(By.xpath("//input[@class='input-text page']")).sendKeys("1182");
         String number = driver.findElement(By.xpath("//input[@class='input-text page']")).getAttribute("value");
 //        System.out.println("Number is :" + number);
         String text = getTextOfElement(driver, AbstractPageUI.TOTAL_RECORD_FOUND);
         String[] words = text.split("\\s");//tach chuoi dua tren khoang trang
-       //su dung vong lap foreach de in cac element cua mang chuoi thu duoc
+
         System.out.println("words: " + words[2]);
         int i = Integer.parseInt(words[2]);
         System.out.println(i);
         while (Integer.parseInt(number) != i){
-
             driver.findElement(By.xpath("//img[@alt='Go to Next page']")).click();
             Thread.sleep(3000);
             number = driver.findElement(By.xpath("//input[@class='input-text page']")).getAttribute("value");
@@ -827,7 +824,9 @@ public class AbstractPages extends AbstractTest {
                 colName.add(nameEl.getText());
                 System.out.println(nameEl.getText());
             }
-
+        }
+        for (String name: colName){
+            System.out.println("aaaaaaaa" + name);
         }
     }
 

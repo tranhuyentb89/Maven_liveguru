@@ -87,8 +87,12 @@ public class BE_CustomerManage extends AbstractTest {
     }
 
     @Test
-    public void TC_04_VerifyWhenSearchWithID(){
-
+    public void TC_04_VerifyWhenSearchWithID() throws InterruptedException {
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, "69600", "customerGrid_filter_entity_id_from");
+        BE_ManageCustomerPage.inputToDynamicTextbox(driver, "70000", "customerGrid_filter_entity_id_to");
+        BE_ManageCustomerPage.clickToDynamicLinkButton(driver, "Search");
+        Thread.sleep(3000);
+        BE_ManageCustomerPage.compareDisplayRowCOuntWithActualRowCount(driver);
     }
 
     public int randomNumber() {
